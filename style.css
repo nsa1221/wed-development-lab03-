@@ -1,0 +1,281 @@
+/* ========== 1. Өнгө, фонтын хувьсагчид (тогтмол загвар) ========== */
+:root {
+  --deep: #0f3d44;        /* толгой, гарчиг */
+  --deep-2: #165562;      /* hover */
+  --teal: #1b8a8f;        /* үндсэн өнгө, товч */
+  --sand: #f4f6f3;        /* хуудасны дэвсгэр */
+  --white: #ffffff;
+  --line: #cfd8d6;        /* хүрээ */
+  --text: #1c2b2d;
+  --muted: #5d7073;
+  --amber: #e8a33d;       /* badge, тэмдэглэгээ */
+  --error: #c0392b;
+  --font-body: "Noto Sans", Arial, sans-serif;
+  --font-head: "Noto Serif", Georgia, serif;
+  --radius: 8px;
+}
+
+/* ========== 2. Ерөнхий ========== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--sand);
+}
+
+/* ========== 3. Толгой, цэс ========== */
+.site-header {
+  background: var(--deep);
+  color: var(--white);
+  padding: 18px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.site-title {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  color: #cfe5e7;
+  text-decoration: none;
+}
+
+.nav-link:hover { background: var(--deep-2); color: var(--white); }
+.nav-link-active { background: var(--teal); color: var(--white); }
+
+/* ========== 4. Хуудас, карт ========== */
+.page {
+  max-width: 880px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
+}
+
+.section-title {
+  margin: 0 0 8px;
+  padding-bottom: 10px;
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--deep);
+  border-bottom: 3px solid var(--amber);
+  display: inline-block;
+}
+
+.lead { color: var(--muted); margin: 12px 0 24px; }
+
+/* ========== 5. Формын бүлэг (fieldset) ========== */
+.form-box {
+  position: relative;                /* badge-ийн суурь */
+  margin: 0 0 24px;
+  padding: 28px 24px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfb;
+}
+
+.form-legend {
+  padding: 4px 14px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--white);
+  background: var(--deep);
+  border-radius: 20px;
+}
+
+/* ========== 6. Badge (position: absolute) ========== */
+.badge {
+  position: absolute;                /* fieldset-ийн баруун дээд буланд */
+  top: -13px;
+  right: 16px;
+  padding: 2px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--deep);
+  background: var(--amber);
+  border-radius: 20px;
+}
+
+/* ========== 7. Талбарууд (box model) ========== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+}
+
+.form-wide { grid-column: 1 / -1; }
+
+.form-group { display: flex; flex-direction: column; }
+
+.form-label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep);
+}
+
+.req { color: var(--error); }
+
+.form-input {
+  width: 100%;
+  padding: 11px 14px;                /* padding */
+  margin: 0;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--white);
+  border: 1.5px solid var(--line);   /* border */
+  border-radius: var(--radius);      /* border-radius */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder { color: #9aabad; }
+
+.form-input:hover { border-color: var(--teal); }
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(27, 138, 143, 0.18);
+}
+
+.form-input:user-invalid {
+  border-color: var(--error);
+  background: #fff7f6;
+}
+
+.form-file { padding: 9px 12px; background: var(--sand); }
+
+textarea.form-input { resize: vertical; }
+
+/* radio, checkbox */
+.choice-row { display: flex; flex-wrap: wrap; gap: 8px 20px; padding-top: 4px; }
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.choice input { width: 18px; height: 18px; accent-color: var(--teal); }
+
+/* ========== 8. Tooltip (position: relative / absolute) ========== */
+.tooltip {
+  position: relative;                /* тайлбарын суурь */
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  color: var(--white);
+  background: var(--teal);
+  border-radius: 50%;
+  cursor: help;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;                /* ? тэмдгийн дээр гарна */
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--white);
+  background: var(--deep);
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.tooltip:hover::after { opacity: 1; visibility: visible; }
+
+/* ========== 9. Товчнууд ========== */
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.btn {
+  padding: 12px 28px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary { color: var(--white); background: var(--teal); border: 2px solid var(--teal); }
+.btn-primary:hover { background: var(--deep); border-color: var(--deep); }
+
+.btn-secondary { color: var(--deep); background: var(--white); border: 2px solid var(--line); }
+.btn-secondary:hover { border-color: var(--deep); }
+
+.btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* ========== 10. Жагсаалт, хүснэгт ========== */
+.interest-list { margin: 16px 0 0; padding-left: 22px; }
+.interest-list li { padding: 4px 0; }
+.interest-list li::marker { color: var(--amber); }
+
+.grades { width: 100%; margin-top: 16px; border-collapse: collapse; }
+.grades th, .grades td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+.grades thead th { color: var(--white); background: var(--deep); }
+.grades th:last-child, .grades td:last-child { text-align: right; }
+.grades tbody tr:nth-child(even) { background: var(--sand); }
+.grades tbody tr:hover { background: #e3efee; }
+
+/* ========== 11. Хөл ========== */
+.site-footer {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #cfe5e7;
+  background: var(--deep);
+}
+
+.site-footer p { margin: 0; }
+
+/* ========== 12. Гар утас ========== */
+@media (max-width: 640px) {
+  .site-header { padding: 16px; }
+  .card { padding: 20px 16px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
